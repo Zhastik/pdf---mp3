@@ -6,24 +6,24 @@ from tika import parser
 
 
 class f_path:
-    def __init__(self,master):
-        self.master=master
+    def __init__(self):
+        self.master=Tk()
         self.master.geometry("135x120")
         self.master.resizable(width=False, height=False)
 
-        self.mainframe=Frame(master)
+        self.mainframe=Frame(self.master)
         self.mainframe.pack()
         
         self.language = IntVar()
         self.language.set(1)
 
-        ins_but = Button(master, text='Выбрать файл', command=self.insert_file)
+        ins_but = Button(self.mainframe, text='Выбрать файл', command=self.insert_file)
         ins_but.pack(pady = 5)
-        ru = Radiobutton(master, text="Русский", variable=self.language, value=1)
+        ru = Radiobutton(self.mainframe, text="Русский", variable=self.language, value=1)
         ru.pack()
-        en = Radiobutton(master, text="English", variable=self.language, value=2)
+        en = Radiobutton(self.mainframe, text="English", variable=self.language, value=2)
         en.pack()
-        button = Button(master, text="Перевести",command=self.sel_lang)
+        button = Button(self.mainframe, text="Перевести",command=self.sel_lang)
         button.pack()
 
     def sel_lang(self):
@@ -46,6 +46,5 @@ class f_path:
         output_file = gtts.gTTS(self.pdf['content'], lang = self.lang)
         output_file.save('output_file.mp3')
             
-root = Tk()
-my_gui = f_path(root)
-root.mainloop()
+if __name__ == '__main__':
+    f_path()
