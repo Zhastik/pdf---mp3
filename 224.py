@@ -25,6 +25,7 @@ class f_path:
         en.pack()
         button = Button(self.mainframe, text="Перевести",command=self.sel_lang)
         button.pack()
+        self.master.mainloop()
 
     def sel_lang(self):
         if self.language.get() == 1:
